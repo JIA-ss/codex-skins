@@ -1,6 +1,6 @@
 <h1 align="center">codex-skins</h1>
 
-<p align="center"><b>Themes and a typing mascot for the Codex desktop app.</b><br>
+<p align="center"><b>Themes and a typing mascot for the Codex desktop app — Windows and macOS.</b><br>
 <sub>A painted scene behind your chats, the accent recolored to match, frosted glass, gentle particles — and a little mascot that peeks over your message box, hops along as you type and jumps when you hit Enter.</sub></p>
 
 <p align="center">

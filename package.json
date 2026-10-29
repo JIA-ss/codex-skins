@@ -1,7 +1,7 @@
 {
   "name": "codex-skins",
   "version": "0.1.0",
-  "description": "Unofficial themes for the Codex desktop app: scene backgrounds, accent colors, glass UI and a little mascot that hops while you type.",
+  "description": "Unofficial themes for the Codex desktop app on Windows and macOS: scene backgrounds, accent colors, glass UI and a little mascot that hops while you type.",
   "type": "module",
   "license": "MIT",
   "author": "JIA-ss",

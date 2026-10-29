@@ -1,6 +1,6 @@
 <h1 align="center">codex-skins</h1>
 
-<p align="center"><b>给 Codex 桌面版换肤，再养一只跟着你打字的小家伙。</b><br>
+<p align="center"><b>给 Codex 桌面版换肤（Windows 和 macOS），再养一只跟着你打字的小家伙。</b><br>
 <sub>聊天区后面铺一张场景画，强调色跟着换，面板变成毛玻璃，再加一点粒子；还有一只吉祥物趴在输入框上沿，你打字它就蹦着往前走，回车就起跳。</sub></p>
 
 <p align="center">
@@ -8,7 +8,7 @@
   <a href="https://github.com/JIA-ss/codex-skins/releases/latest"><img src="https://img.shields.io/github/v/release/JIA-ss/codex-skins?label=release&color=5fe3c4" alt="release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/JIA-ss/codex-skins?color=3d8bfd" alt="license"></a>
   <a href="skins/LICENSE.md"><img src="https://img.shields.io/badge/theme_art-CC0-8a8a8a" alt="theme art: CC0"></a>
-  <a href="#安装"><img src="https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white" alt="platform"></a>
+  <a href="#安装"><img src="https://img.shields.io/badge/platform-Windows_%7C_macOS-0078D6?logo=windows&logoColor=white" alt="platform"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%E2%89%A5%2022-339933?logo=nodedotjs&logoColor=white" alt="node >= 22"></a>
   <a href="https://github.com/JIA-ss/codex-skins/stargazers"><img src="https://img.shields.io/github/stars/JIA-ss/codex-skins?color=f5c518&logo=github" alt="stars"></a>
   <a href="https://github.com/JIA-ss/claude-skins"><img src="https://img.shields.io/badge/%E5%A7%8A%E5%A6%B9%E9%A1%B9%E7%9B%AE-claude--skins-d97757" alt="claude-skins"></a>
@@ -27,7 +27,7 @@
 
 ## 安装
 
-目前只支持 Windows。需要 [Node.js](https://nodejs.org) 22 以上。
+支持 Windows 和 macOS。需要 [Node.js](https://nodejs.org) 22 以上。
 
 ```bash
 git clone https://github.com/JIA-ss/codex-skins.git
@@ -36,13 +36,15 @@ npm install --omit=dev   # 开发依赖（Electron）只有跑测试才需要
 node install.mjs
 ```
 
-然后从开始菜单里新出现的 **Codex (skins)** 快捷方式启动。
+然后启动 **Codex (skins)**：Windows 上从开始菜单里新出现的快捷方式启动，macOS 上从 `~/Applications` 或聚焦搜索启动。
 
 安装器做了什么：Codex 是从微软商店（MSIX）装的，目录只读，所以安装器把应用复制到 `%LOCALAPPDATA%\codex-skins\Codex`，改这份副本，再加上那个快捷方式。原版 Codex 不会被改动，可以和副本同时开着。
 
 - 登录、对话和项目都在 `~/.codex` 里，两边共用。
 - 副本有自己独立的界面配置（窗口布局、本地设置）；不然一启动副本，打开的其实是原版的窗口。
 - `codex://` 链接仍然会打开原版。
+
+**macOS：** 官方签名的 `/Applications/ChatGPT.app`（bundle `com.openai.codex`）不会被改动——原地修改会破坏 OpenAI 的签名，它的自动更新也会跟着失效。安装器把它复制到 `~/Applications/Codex (skins).app`，给副本单独的界面配置（`~/Library/Application Support/CodexSkins`），在 `Frameworks/Codex Framework.framework` 里关掉 fuse，再做一次 ad hoc 重签名。macOS 可能会问一次是否允许副本控制其他应用（Codex 自带的操作电脑功能），按你自己的需要选。快捷键是 ⌃⌥T / ⌃⌥⇧T / ⌃⌥P。已在 macOS 26（Apple 芯片）+ Codex 26.1023 上测过。
 
 其他命令：
 
@@ -108,7 +110,7 @@ node install.mjs --app <目录> # 原地修改别的解包好的 Codex 目录（
 两种加法：
 
 - **不用重装：** 把文件夹放到副本的用户数据目录下的 `codex-skins/skins/<id>/`，然后重启 Codex：
-  `%APPDATA%\Codex\web\CodexSkins\codex-skins\skins\`。和内置主题同 id 的文件夹会替换内置的那个。
+  Windows 是 `%APPDATA%\Codex\web\CodexSkins\codex-skins\skins\`，macOS 是 `~/Library/Application Support/CodexSkins/codex-skins/skins/`。和内置主题同 id 的文件夹会替换内置的那个。
 - **打包进去：** `node install.mjs --skins <装着若干主题文件夹的目录>`（可以写多次）。
 
 `<id>` 就是文件夹名：小写字母、数字和 `-`。
