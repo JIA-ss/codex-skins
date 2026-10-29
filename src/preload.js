@@ -31,6 +31,9 @@
   const T = ZH
     ? { off: "已关闭", level: "浓度", levels: ["淡", "中", "浓"], stageOn: "录屏模式：开（侧栏和标题已隐藏，Ctrl+Alt+P 关闭）", stageOff: "录屏模式：关", hint: "codex-skins：Ctrl+Alt+T 换主题 · Ctrl+Alt+Shift+T 调浓度 · Ctrl+Alt+P 录屏模式" }
     : { off: "off", level: "Intensity", levels: ["low", "medium", "high"], stageOn: "Stage mode on — sidebar and titles hidden (Ctrl+Alt+P to turn off)", stageOff: "Stage mode off", hint: "codex-skins: Ctrl+Alt+T theme · Ctrl+Alt+Shift+T intensity · Ctrl+Alt+P stage mode" };
+  // macOS: show the keys as the Mac keyboard labels them (the handler matches physical keys via e.code, so Option
+  // turning T into † does not matter)
+  if (/Mac/i.test(navigator.platform || "")) for (const k of Object.keys(T)) if (typeof T[k] === "string") T[k] = T[k].replace(/Ctrl\+Alt\+Shift\+/g, "⌃⌥⇧").replace(/Ctrl\+Alt\+/g, "⌃⌥");
   const nameOf = (skin) => (typeof skin.name === "string" ? skin.name : (skin.name && (ZH ? skin.name.zh : skin.name.en)) || skin.id);
 
   let SKINS = [];

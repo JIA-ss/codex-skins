@@ -8,7 +8,7 @@
   <a href="https://github.com/JIA-ss/codex-skins/releases/latest"><img src="https://img.shields.io/github/v/release/JIA-ss/codex-skins?label=release&color=5fe3c4" alt="release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/JIA-ss/codex-skins?color=3d8bfd" alt="license"></a>
   <a href="skins/LICENSE.md"><img src="https://img.shields.io/badge/theme_art-CC0-8a8a8a" alt="theme art: CC0"></a>
-  <a href="#install"><img src="https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white" alt="platform"></a>
+  <a href="#install"><img src="https://img.shields.io/badge/platform-Windows_%7C_macOS-0078D6?logo=windows&logoColor=white" alt="platform"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%E2%89%A5%2022-339933?logo=nodedotjs&logoColor=white" alt="node >= 22"></a>
   <a href="https://github.com/JIA-ss/codex-skins/stargazers"><img src="https://img.shields.io/github/stars/JIA-ss/codex-skins?color=f5c518&logo=github" alt="stars"></a>
   <a href="https://github.com/JIA-ss/claude-skins"><img src="https://img.shields.io/badge/sibling-claude--skins-d97757" alt="claude-skins"></a>
@@ -27,7 +27,7 @@
 
 ## Install
 
-Windows only for now. Requires [Node.js](https://nodejs.org) 22+.
+Windows and macOS. Requires [Node.js](https://nodejs.org) 22+.
 
 ```bash
 git clone https://github.com/JIA-ss/codex-skins.git
@@ -36,13 +36,15 @@ npm install --omit=dev   # dev dependencies (Electron) are only needed for the t
 node install.mjs
 ```
 
-Then start Codex from the new Start menu shortcut **Codex (skins)**.
+Then start Codex from the new Start menu shortcut **Codex (skins)** (Windows), or **Codex (skins)** in `~/Applications` / Spotlight (macOS).
 
 What the installer does: Codex comes from the Microsoft Store (MSIX), whose folder is read-only, so it copies the app to `%LOCALAPPDATA%\codex-skins\Codex`, patches the copy and adds the shortcut. The regular Codex is never modified and can keep running next to it.
 
 - Your login, chats and projects live in `~/.codex` and are shared by both.
 - The copy has its own UI profile (window layout, local settings), otherwise starting it would just bring up the regular app's window.
 - `codex://` links still open the regular app.
+
+**macOS:** the signed `/Applications/ChatGPT.app` (bundle `com.openai.codex`) is never touched — patching it in place would break OpenAI's signature and its auto-update. The installer copies it to `~/Applications/Codex (skins).app`, gives the copy its own UI profile (`~/Library/Application Support/CodexSkins`), turns the fuses off in `Frameworks/Codex Framework.framework` and re-signs the copy ad hoc. macOS may ask once whether the copy may control other apps (Codex's computer-use helper); that is Codex's own feature, answer as you like. Shortcuts are ⌃⌥T / ⌃⌥⇧T / ⌃⌥P. Tested on macOS 26 (Apple silicon) with Codex 26.1023.
 
 Other commands:
 
@@ -108,7 +110,7 @@ A theme is a folder with a `skin.json` — the same format as [claude-skins](htt
 Two ways to add it:
 
 - **No reinstall:** put the folder in the skinned copy's user data folder under `codex-skins/skins/<id>/` and restart Codex:
-  `%APPDATA%\Codex\web\CodexSkins\codex-skins\skins\`. A folder with the same id as a built-in theme replaces it.
+  Windows `%APPDATA%\Codex\web\CodexSkins\codex-skins\skins\`, macOS `~/Library/Application Support/CodexSkins/codex-skins/skins/`. A folder with the same id as a built-in theme replaces it.
 - **Bundle it:** `node install.mjs --skins <folder containing theme folders>` (repeatable).
 
 `<id>` is the folder name: lowercase letters, digits and `-`.

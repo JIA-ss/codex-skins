@@ -142,7 +142,7 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
         crit: ["暴击!"],
         record: (n) => `新纪录 ×${n}!`,
         day: (n) => `第 ${n} 天`,
-        cycle: "点一下换主题（Ctrl+Alt+T）",
+        cycle: `点一下换主题（${/Mac/i.test(navigator.platform || "") ? "⌃⌥T" : "Ctrl+Alt+T"}）`,
       }
     : {
         click: ["Hey!", "Boop!", "Whatcha writing?", "You got this!", "Hehe", "Yay!"],
@@ -154,7 +154,7 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
         crit: ["CRIT!"],
         record: (n) => `New record ×${n}!`,
         day: (n) => `Day ${n}`,
-        cycle: "Click to switch theme (Ctrl+Alt+T)",
+        cycle: `Click to switch theme (${/Mac/i.test(navigator.platform || "") ? "⌃⌥T" : "Ctrl+Alt+T"})`,
       };
   function lines(kind) {
     const skin = api.skin();
