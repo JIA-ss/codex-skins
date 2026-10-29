@@ -1,0 +1,20 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --omit=dev
+      - name: syntax
+        run: for f in src/*.js lib/*.mjs install.mjs test/*.mjs; do node --check "$f"; done
+      - name: themes
+        run: node -e "const fs=require('fs');for(const d of fs.readdirSync('skins',{withFileTypes:true}))if(d.isDirectory()){const m=JSON.parse(fs.readFileSync('skins/'+d.name+'/skin.json','utf8'));for(const k of ['background','peek','badge'])if(m[k]&&!fs.existsSync('skins/'+d.name+'/'+m[k]))throw new Error(d.name+': missing '+m[k]);console.log('ok',d.name)}"
+      - name: unit tests (the Electron end-to-end test runs locally: npm test)
+        run: node --test test/unit.test.mjs

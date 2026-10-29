@@ -1,14 +1,25 @@
-# codex-skins
+<h1 align="center">codex-skins</h1>
 
-[中文说明](README.zh-CN.md)
+<p align="center"><b>Themes and a typing mascot for the Codex desktop app.</b><br>
+<sub>A painted scene behind your chats, the accent recolored to match, frosted glass, gentle particles — and a little mascot that peeks over your message box, hops along as you type and jumps when you hit Enter.</sub></p>
 
-Themes for the Codex desktop app: a painted scene behind the chat, the accent color swapped to match, frosted-glass panels, gentle particles — and a little mascot that peeks over your message box, **hops along as you type, jumps when you hit Enter**, and can be clicked, dragged and flung around.
+<p align="center">
+  <a href="https://github.com/JIA-ss/codex-skins/actions/workflows/ci.yml"><img src="https://github.com/JIA-ss/codex-skins/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/JIA-ss/codex-skins/releases/latest"><img src="https://img.shields.io/github/v/release/JIA-ss/codex-skins?label=release&color=5fe3c4" alt="release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/JIA-ss/codex-skins?color=3d8bfd" alt="license"></a>
+  <a href="skins/LICENSE.md"><img src="https://img.shields.io/badge/theme_art-CC0-8a8a8a" alt="theme art: CC0"></a>
+  <a href="#install"><img src="https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white" alt="platform"></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%E2%89%A5%2022-339933?logo=nodedotjs&logoColor=white" alt="node >= 22"></a>
+  <a href="https://github.com/JIA-ss/codex-skins/stargazers"><img src="https://img.shields.io/github/stars/JIA-ss/codex-skins?color=f5c518&logo=github" alt="stars"></a>
+  <a href="https://github.com/JIA-ss/claude-skins"><img src="https://img.shields.io/badge/sibling-claude--skins-d97757" alt="claude-skins"></a>
+</p>
 
-![demo](docs/demo.gif)
+<p align="center"><a href="README.zh-CN.md">中文说明</a> · <a href="#install">Install</a> · <a href="#using-it">Shortcuts</a> · <a href="#make-your-own-theme">Make a theme</a> · <a href="https://github.com/JIA-ss/claude-skins">claude-skins (for Claude)</a></p>
 
-> **Unofficial.** codex-skins is a community project. It is not made, endorsed or supported by OpenAI. It patches the copy of Codex installed on *your* machine; no OpenAI files are redistributed here. Use it at your own risk, and expect to re-run the installer after Codex updates.
->
-> Sibling project: [claude-skins](https://github.com/JIA-ss/claude-skins) does the same for the Claude desktop app. Themes are interchangeable.
+<p align="center"><img src="docs/demo.gif" alt="codex-skins demo" width="860"></p>
+
+> [!NOTE]
+> **Unofficial.** codex-skins is an unofficial community project. It is not made, endorsed or supported by OpenAI. It patches the copy of Codex installed on <i>your</i> machine; no OpenAI files are redistributed here. Use it at your own risk, and expect to re-run the installer after Codex updates.
 
 | Aurora | Night Sakura | Campfire | Neon Rain |
 |---|---|---|---|
@@ -139,6 +150,18 @@ The end-to-end test runs the real preload in Electron against `test/e2e/app/page
 
 For your own build pipeline, `lib/patch.mjs` exports `injectInto(extractedAsarDir, { skinDirs })`.
 
+## See also
+
+- [claude-skins](https://github.com/JIA-ss/claude-skins) — the same themes and mascot for the Claude desktop app. Theme folders work in both.
+
 ## Credits
 
-Code: MIT, see [LICENSE](LICENSE). The bundled theme art (backgrounds and mascots) comes from claude-skins: generated with an image model from text prompts only — no reference images — and released under [CC0](https://creativecommons.org/publicdomain/zero/1.0/). The prompts are in [tools/gen_art.py](tools/gen_art.py).
+Code: MIT, see [LICENSE](LICENSE). The bundled theme art (backgrounds and mascots) comes from claude-skins: generated with an image model from text prompts only — no reference images — and released under [CC0](https://creativecommons.org/publicdomain/zero/1.0/) (see [skins/LICENSE.md](skins/LICENSE.md)). The prompts are in [tools/gen_art.py](tools/gen_art.py).
+
+## Legal notice
+
+> This is an **unofficial community project**, not affiliated with, endorsed by or sponsored by OpenAI. It contains no OpenAI code or assets: the installer modifies the copy of Codex already installed on your machine. "OpenAI", "ChatGPT" and "Codex" are trademarks of OpenAI. Use it at your own risk.
+
+---
+
+<p align="center"><sub>Made by <a href="https://github.com/JIA-ss">JIA-ss</a> · code MIT · theme art CC0</sub></p>

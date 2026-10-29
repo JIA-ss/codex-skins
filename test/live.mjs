@@ -89,9 +89,12 @@ await sleep(150);
 const typed = await js(`({ text: document.activeElement?.textContent, combo: document.querySelector("[data-cskin=peek-combo]")?.textContent ?? null })`);
 await shot("live-typing");
 check("typing reaches the composer and the mascot counts the combo", typed.text === "codexskins12" && typed.combo === "×12", typed);
-for (let i = 0; i < 14; i++) await key("Backspace", 0, "Backspace");
+// delete exactly what was typed (an extra Backspace on an empty composer can move focus or act on the composer's chips)
+const TYPED = "codexskins12".length;
+for (let i = 0; i < TYPED; i++) await key("Backspace", 0, "Backspace");
 await sleep(300);
-check("composer cleared again", (await js(`document.activeElement?.textContent ?? ""`)) === "");
+const left = await js(`[...document.querySelectorAll("[data-composer-body] [contenteditable=true]")].map((e) => e.textContent).join("")`);
+check("composer cleared again", left === "", left);
 // back to the starting theme
 for (let i = 0; i < 20; i++) { s = await js(STATE); if (s.skin === start.skin) break; await key("KeyT", CTRL_ALT); await sleep(900); }
 const failed = results.filter((r) => !r.ok);

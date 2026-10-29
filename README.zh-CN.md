@@ -1,14 +1,25 @@
-# codex-skins
+<h1 align="center">codex-skins</h1>
 
-[English](README.md)
+<p align="center"><b>给 Codex 桌面版换肤，再养一只跟着你打字的小家伙。</b><br>
+<sub>聊天区后面铺一张场景画，强调色跟着换，面板变成毛玻璃，再加一点粒子；还有一只吉祥物趴在输入框上沿，你打字它就蹦着往前走，回车就起跳。</sub></p>
 
-给 Codex 桌面版换肤：聊天区后面铺一张场景画，强调色跟着换，面板变成毛玻璃，再加一点粒子动效。还有一只吉祥物趴在输入框上沿：**你打字它就跟着蹦着往前走，回车它就起跳**，也可以点它、拖着它满屏甩。
+<p align="center">
+  <a href="https://github.com/JIA-ss/codex-skins/actions/workflows/ci.yml"><img src="https://github.com/JIA-ss/codex-skins/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/JIA-ss/codex-skins/releases/latest"><img src="https://img.shields.io/github/v/release/JIA-ss/codex-skins?label=release&color=5fe3c4" alt="release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/JIA-ss/codex-skins?color=3d8bfd" alt="license"></a>
+  <a href="skins/LICENSE.md"><img src="https://img.shields.io/badge/theme_art-CC0-8a8a8a" alt="theme art: CC0"></a>
+  <a href="#安装"><img src="https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white" alt="platform"></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%E2%89%A5%2022-339933?logo=nodedotjs&logoColor=white" alt="node >= 22"></a>
+  <a href="https://github.com/JIA-ss/codex-skins/stargazers"><img src="https://img.shields.io/github/stars/JIA-ss/codex-skins?color=f5c518&logo=github" alt="stars"></a>
+  <a href="https://github.com/JIA-ss/claude-skins"><img src="https://img.shields.io/badge/%E5%A7%8A%E5%A6%B9%E9%A1%B9%E7%9B%AE-claude--skins-d97757" alt="claude-skins"></a>
+</p>
 
-![演示](docs/demo.gif)
+<p align="center"><a href="README.md">English</a> · <a href="#安装">安装</a> · <a href="#怎么用">快捷键</a> · <a href="#自己做主题">做自己的主题</a> · <a href="https://github.com/JIA-ss/claude-skins">claude-skins（Claude 版）</a></p>
 
-> **非官方项目。** codex-skins 是社区项目，不是 OpenAI 出品，也不受 OpenAI 支持。它修改的是**你自己电脑上装的那份** Codex，仓库里不包含任何 OpenAI 的文件。风险自担；Codex 更新后需要重新运行一次安装。
->
-> 姊妹项目：[claude-skins](https://github.com/JIA-ss/claude-skins) 给 Claude 桌面版做同样的事，两边的主题可以通用。
+<p align="center"><img src="docs/demo.gif" alt="codex-skins 演示" width="860"></p>
+
+> [!NOTE]
+> **非官方项目。** codex-skins 是社区项目，不是 OpenAI 出品，也不受 OpenAI 支持。它修改的是<b>你自己电脑上装的那份</b> Codex，仓库里不包含任何 OpenAI 的文件。风险自担；Codex 更新后需要重新运行一次安装。
 
 | 极光 | 夜樱 | 营火 | 霓虹雨夜 |
 |---|---|---|---|
@@ -139,6 +150,18 @@ npm run e2e -- --skins <目录>   # 同时加载并测试你自己的主题文�
 
 想接进自己的构建流程，`lib/patch.mjs` 导出了 `injectInto(解包后的asar目录, { skinDirs })`。
 
+## 另见
+
+- [claude-skins](https://github.com/JIA-ss/claude-skins)：同一套主题和吉祥物，给 Claude 桌面版用。主题文件夹两边通用，拷过去就能用。
+
 ## 致谢
 
-代码：MIT 协议，见 [LICENSE](LICENSE)。内置主题的美术（背景和吉祥物）来自 claude-skins：用图像模型只靠文字提示生成，没用任何参考图，以 [CC0](https://creativecommons.org/publicdomain/zero/1.0/) 协议发布。提示词在 [tools/gen_art.py](tools/gen_art.py) 里。
+代码：MIT 协议，见 [LICENSE](LICENSE)。内置主题的美术（背景和吉祥物）来自 claude-skins：用图像模型只靠文字提示生成，没用任何参考图，以 [CC0](https://creativecommons.org/publicdomain/zero/1.0/) (see [skins/LICENSE.md](skins/LICENSE.md)) 协议发布。提示词在 [tools/gen_art.py](tools/gen_art.py) 里。
+
+## 法律声明
+
+> 本项目是非官方的社区项目，与 OpenAI 没有任何关联，也未获得其认可或赞助。仓库里没有 OpenAI 的代码或素材：安装器修改的是已经装在你电脑上的那份 Codex。「OpenAI」「ChatGPT」「Codex」是 OpenAI 的商标。使用风险自担。
+
+---
+
+<p align="center"><sub>由 <a href="https://github.com/JIA-ss">JIA-ss</a> 制作 · 代码 MIT · 主题美术 CC0</sub></p>
