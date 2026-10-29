@@ -54,7 +54,13 @@ node install.mjs uninstall   # delete the skinned copy and its shortcut (its UI 
 node install.mjs --app <dir> # patch some other unpacked Codex folder (one with resources/app.asar) in place
 ```
 
-**After Codex updates**, quit the skinned copy and run `node install.mjs` again — it notices the new version and takes a fresh copy.
+**When Codex updates**, the skins do not follow by themselves — re-run the installer once:
+
+- The regular Codex keeps updating itself as usual; its files are never modified.
+- The skinned copy (`%LOCALAPPDATA%\codex-skins\Codex` on Windows, `~/Applications/Codex (skins).app` on macOS) stays on the version it was copied from. It keeps working, it just falls behind.
+- Quit the skinned copy and run `node install.mjs` again. It sees that the regular app changed (Store: its versioned folder; macOS: its version number), takes a fresh copy, patches and, on macOS, re-signs it.
+- macOS: after each re-install any macOS permission prompt you answered for the copy may come back once — the ad hoc signature is new every time.
+- Not verified yet: whether the copy's own built-in updater tries to update the copy. If it does, it either fails (the signature no longer matches) or leaves you with an unthemed newer version; re-running `node install.mjs` fixes both.
 
 ## Using it
 

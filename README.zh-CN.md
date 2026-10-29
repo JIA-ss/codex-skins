@@ -54,7 +54,13 @@ node install.mjs uninstall   # 删掉复制出来的副本和快捷方式（副�
 node install.mjs --app <目录> # 原地修改别的解包好的 Codex 目录（里面有 resources/app.asar）
 ```
 
-**Codex 更新后**，先退出副本，再运行一次 `node install.mjs`，它会发现版本变了，重新复制一份。
+**Codex 更新之后**，皮肤不会自动跟着更新，需要重新运行一次安装：
+
+- 原版 Codex 照常自动更新，它的文件从来不会被改动。
+- 皮肤副本（Windows 上是 `%LOCALAPPDATA%\codex-skins\Codex`，macOS 上是 `~/Applications/Codex (skins).app`）停在复制时的版本，照常能用，只是会落后于原版。
+- 先退出皮肤副本，再运行一次 `node install.mjs`。它会发现原版变了（商店版看带版本号的安装目录，macOS 看版本号），重新复制一份、注入皮肤；macOS 上还会重新签名。
+- macOS：每次重装后，你给副本授过的系统权限可能会再问一次，因为 ad hoc 签名每次都是新的。
+- 还没验证的一点：副本里自带的自动更新程序会不会去升级副本本身。如果会，结果要么是升级失败（签名对不上），要么是变成没有皮肤的新版；两种情况都重新运行一次 `node install.mjs` 就好。
 
 ## 怎么用
 
