@@ -1,0 +1,44 @@
+<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><title>mock Codex — new chat</title>
+<!-- The demo / README screen: a clean new chat in a mock of the Codex desktop app (no history, no recents, no account). -->
+<style>
+ :where(:root)[data-theme="dark"]{
+  --codex-base-accent:#ee7c37;--codex-base-surface:#181818;--codex-base-ink:#ffffff;
+  --codex-theme-accent-color:var(--codex-base-accent);--app-color-background-accent:#653218;
+  --color-background-accent-action:#d25e28;--color-background-composer-primary:var(--color-background-accent-action);
+ }
+ html,body{margin:0;background:transparent;color:#ececec;font:14px/1.6 "Segoe UI","Microsoft YaHei",system-ui,sans-serif}
+ .shell{display:flex;height:100vh}
+ #app-shell-sidebar{display:flex;width:300px;flex:0 0 auto}
+ .rail{width:52px;display:flex;flex-direction:column;align-items:center;gap:14px;padding-top:56px;box-sizing:border-box}
+ .rail i{width:18px;height:18px;border-radius:5px;background:#5a5a5a;display:block}
+ [data-sidebar-navigation-root]{flex:1;background:rgb(36 36 36 / .65);border-radius:12px 0 0 0;margin-top:44px;display:flex}
+ nav[role=navigation]{flex:1;display:flex;flex-direction:column}
+ .hrow{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 14px;font-size:17px;color:#f2f2f2}
+ [data-appearance=plain]{display:flex;flex-direction:column;gap:1px;padding:0 6px}
+ .row{display:flex;gap:10px;align-items:center;padding:5px 10px;border-radius:8px;color:#d6d6d6}
+ [data-app-action-sidebar-scroll]{flex:1}
+ main[data-app-shell-main-surface]{position:relative;flex:1;background:var(--codex-base-surface);margin-top:44px;border-radius:12px 0 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+ h1{font-weight:600;font-size:26px;margin:0 0 22px;color:#f4f4f4}
+ .composer{width:640px}
+ [data-composer-body]{background:#2e2e2e;border-radius:22px;min-height:52px;display:flex;align-items:center;gap:8px;padding:0 8px 0 14px}
+ .ProseMirror{flex:1;outline:none;min-height:22px;color:#f2f2f2}
+ .ProseMirror:empty:before{content:"Ask Codex anything";color:#8a8a8a}
+ .size-token-button-composer{width:32px;height:32px;border-radius:50%;border:0;background:var(--color-background-composer-primary);color:#fff;font-size:15px}
+ .sp{height:160px}
+</style></head><body>
+<div id="root"><div class="shell">
+ <div id="app-shell-sidebar">
+  <nav class="rail" data-app-navigation-rail><i></i><i></i><i></i><i></i></nav>
+  <div data-sidebar-navigation-root><nav role="navigation" aria-label="Home">
+   <div class="hdr"><div class="hrow"><span>Codex ▾</span><span style="font-size:13px;color:#999">⌕</span></div>
+    <div data-appearance="plain"><div class="row">New chat</div><div class="row">Skills</div></div></div>
+   <div data-app-action-sidebar-scroll></div>
+  </nav></div>
+ </div>
+ <main data-app-shell-main-surface="default">
+  <h1>What should we build?</h1>
+  <form class="composer" data-chatgpt-composer><div data-composer-body><div class="ProseMirror" contenteditable="true" role="textbox"></div><span style="color:#8a8a8a">🎙</span><button type="button" class="size-token-button-composer">↑</button></div></form>
+  <div class="sp"></div>
+ </main>
+</div></div>
+</body></html>

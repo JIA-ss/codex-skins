@@ -1,0 +1,16 @@
+{
+  "name": {
+    "zh": "极光",
+    "en": "Aurora"
+  },
+  "order": 1,
+  "hue": 168,
+  "sat": 62,
+  "line": "#5fe3c4",
+  "background": "background.jpg",
+  "peek": "peek.png",
+  "badge": "badge.png",
+  "fx": "snow",
+  "fxColor": "#e6f7ff",
+  "default": true
+}

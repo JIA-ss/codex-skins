@@ -1,0 +1,15 @@
+{
+  "name": {
+    "zh": "营火",
+    "en": "Campfire"
+  },
+  "order": 3,
+  "hue": 28,
+  "sat": 88,
+  "line": "#ffa64d",
+  "background": "background.jpg",
+  "peek": "peek.png",
+  "badge": "badge.png",
+  "fx": "embers",
+  "fxColor": "#ffb45e"
+}

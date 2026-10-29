@@ -1,0 +1,30 @@
+{
+  "name": "codex-skins",
+  "version": "0.1.0",
+  "description": "Unofficial themes for the Codex desktop app: scene backgrounds, accent colors, glass UI and a little mascot that hops while you type.",
+  "type": "module",
+  "license": "MIT",
+  "author": "JIA-ss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JIA-ss/codex-skins.git"
+  },
+  "scripts": {
+    "install-skins": "node install.mjs install",
+    "uninstall-skins": "node install.mjs uninstall",
+    "status": "node install.mjs status",
+    "test": "node --test test/unit.test.mjs && npm run e2e",
+    "e2e": "node test/run-e2e.mjs",
+    "demo": "node test/run-e2e.mjs --record"
+  },
+  "dependencies": {
+    "@electron/asar": "^4.0.1",
+    "@electron/fuses": "^2.1.0"
+  },
+  "devDependencies": {
+    "electron": "^44.9.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
