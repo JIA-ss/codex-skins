@@ -126,7 +126,10 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
   // 外层一直是 pointer-events:none，命中由 window 捕获阶段按贴纸像素的 alpha 判断，透明区域的点击照常落到页面上。
   const PEEK_W = 120;
   const PEEK_H = 96;
-  const PEEK_GRIP = 3; // 贴纸底边压进输入框上沿的像素
+  const PEEK_GRIP = 3;
+  // At home only the bottom edge clips, so it can duck behind the composer while tall ears, nods and hops still
+  // poke out above the box.
+  const CLIP_HOME = "inset(-400px -400px 0 -400px)"; // 贴纸底边压进输入框上沿的像素
   // Speech lines. A theme can override any group with "lines": { "click": [...], ... } (or { "zh": {...}, "en": {...} }).
   const TEXT = api.zh
     ? {
@@ -195,7 +198,7 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
   }
   function ensurePeek() {
     if (deco.peek && deco.peek.isConnected) return deco.peek;
-    const el = layer("peek", { position: "fixed", "z-index": "2147481000", "pointer-events": "none", display: "none", width: PEEK_W + "px", height: PEEK_H + "px", overflow: "hidden" });
+    const el = layer("peek", { position: "fixed", "z-index": "2147481000", "pointer-events": "none", display: "none", width: PEEK_W + "px", height: PEEK_H + "px", "clip-path": CLIP_HOME });
     el.setAttribute("aria-hidden", "true");
     const inner = layer("peek-inner", { position: "absolute", inset: "0", transition: "transform .35s cubic-bezier(.3,1.4,.5,1)", transform: "translateY(0)" });
     const sway = layer("peek-sway", { position: "absolute", inset: "0", "transform-origin": "50% 100%" });
@@ -253,11 +256,11 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
     const hide = () => el.style.setProperty("display", "none", "important");
     if (!skin || !skin.peek) return hide();
     if (peek.mode === "free" && peek.pos) {
-      el.style.setProperty("overflow", "visible", "important");
+      el.style.setProperty("clip-path", "none", "important");
       setBox(Math.min(Math.max(peek.pos.x * innerWidth, 0), innerWidth - PEEK_W), Math.min(Math.max(peek.pos.y * innerHeight, 0), innerHeight - PEEK_H));
     } else {
       if (!home) return hide();
-      el.style.setProperty("overflow", "hidden", "important");
+      el.style.setProperty("clip-path", CLIP_HOME, "important");
       setBox(home.left, home.top);
     }
     el.style.setProperty("display", "block", "important");
@@ -325,7 +328,7 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
     if (!el || !peek.alpha || el.style.getPropertyValue("display") !== "block" || peek.duck) return false;
     if (peek.mode === "home") {
       const b = el.getBoundingClientRect();
-      if (x < b.left || x > b.right || y < b.top || y > b.bottom) return false;
+      if (y > b.bottom) return false; // below the composer edge it is hidden behind the composer
     }
     const r = canvasRect();
     if (!r || x < r.left || x >= r.right || y < r.top || y >= r.bottom) return false;
@@ -365,7 +368,7 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
     const el = deco.peek;
     const box = el.getBoundingClientRect();
     setDuck(false);
-    el.style.setProperty("overflow", "visible", "important");
+    el.style.setProperty("clip-path", "none", "important");
     peek.mode = "free";
     // 支点用按下的位置，不用第一次移动的位置，否则贴纸会先跳一下
     peek.drag = { dx: peek.down.x - box.left, dy: peek.down.y - box.top, lx: e.clientX, lt: performance.now() };
@@ -417,7 +420,7 @@ html[data-cskin-on] [data-composer-body] button.size-token-button-composer {
     placePeek();
     const now = el.getBoundingClientRect();
     if (!reduceMotion.matches && el.animate) {
-      el.style.setProperty("overflow", "visible", "important");
+      el.style.setProperty("clip-path", "none", "important");
       const a = el.animate([{ transform: `translate(${old.left - now.left}px,${old.top - now.top}px)` }, { transform: "translate(0,0)" }], { duration: 420, easing: "cubic-bezier(.3,1.25,.5,1)" });
       a.onfinish = () => {
         placePeek();
